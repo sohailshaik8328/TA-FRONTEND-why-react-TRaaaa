@@ -1,35 +1,49 @@
-let input = document.querySelector('#input');
-let ul = document.querySelector('.ul');
+let input = document.querySelector('input');
+let ul = document.querySelector('ul');
 
-let allMovies = [];
+let allMovies = [
+    {
+        name : "forest gump",
+        watched : false
+    }
+];
 
-function handleInput(event) {
+input.addEventListener('keyup', (event) => {
     if(event.keyCode === 13) {
         allMovies.push({
             name : event.target.value,
             watched : false
         });
-        createMovieUI();
+        event.target.value = '';
+        createMovieUI(allMovies, ul);
     }
+});
+
+function handleChange(event) {
+    let id = event.target.id;
+
+    allMovies[id].watched = !allMovies[id].watched;
+    createMovieUI(allMovies, ul)
 }
 
-function createMovieUI() {
-    ul.innerHTML = "";
-    allMovies.forEach((movie, i) => {
+function createMovieUI(data, root) {
+    root.innerHTML = "";
+    data.forEach((movie, i) => {
         let li = document.createElement('li');
+        li.classList.add('flex')
 
-        let h2 = document.createElement('h2');
-        h2.innerHTML = movie.name;
+        let label = document.createElement('label');
+        label.innerHTML = movie.name;
+        label.for = i;
 
         let button = document.createElement('button');
         button.innerHTML = movie.watched ? "watched" : "To Watch";
+        button.id = i;
+        button.addEventListener('click', handleChange);
 
-        li.append(h2, button);
-        ul.append(li);
+        li.append(label, button);
+        root.append(li);
     }) 
 }
 
-createMovieUI();
-
-input.addEventListener('keyup', handleInput);
-
+createMovieUI(allMovies, ul);

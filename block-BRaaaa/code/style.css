@@ -79,3 +79,8 @@ form {
     margin: 1rem auto;
     text-align: center;
 }
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
