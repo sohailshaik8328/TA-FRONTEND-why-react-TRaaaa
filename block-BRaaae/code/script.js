@@ -26,45 +26,19 @@ function handleChange(event) {
     createMovieUI(allMovies, ul)
 }
 
-let elm = React.createElement;
+// let elm = React.createElement;
 
 function createMovieUI(data, root) {
-    // root.innerHTML = "";
     let ui = data.map((movie, i) => {
         
-        let li = elm('li',
-         {classList : "flex"},
-          elm("label", {for : i}, movie.name),
-          elm("button", {id : i, onCLick : handleChange}, movie.watched ? "watched" : "To Watch")
+        return React.createElement('li',
+        //  {classList : "flex"},
+        null,
+          React.createElement("label", {for : i}, movie.name),
+          React.createElement("button", {id : i, onClick : handleChange}, movie.watched ? "watched" : "To Watch")
         );
-        
-        return li;
-    }) 
+            }) 
     ReactDOM.render(ui, root)
 }
 
 createMovieUI(allMovies, ul);
-
-// function elm(type, attr = {}, ...children) {
-//     let element = document.createElement(type);
-//     for(let key in attr) {
-//         if(key.startsWith("data-")) {
-//             element.setAttribute(key, attr[key]);
-//         } else if (key.startsWith('on')) {
-//             let eventType = key.replace('on', '').toLocaleLowerCase();
-//             element.addEventListener(eventType, attr[key]);
-//         } else {
-//             element[key] = attr[key];
-//         }
-//     }
-//     children.forEach(child => {
-//         if(typeof child === "object") { 
-//             element.append(child);
-//         }
-//         if(typeof child === "string") {
-//             let node = document.createTextNode(child);
-//             element.append(node)
-//         }
-//     });
-//     return element;
-// }
