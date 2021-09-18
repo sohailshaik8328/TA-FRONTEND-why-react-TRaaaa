@@ -110,3 +110,8 @@ table {
     right: 5%;
     top: 5%;
 }
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
