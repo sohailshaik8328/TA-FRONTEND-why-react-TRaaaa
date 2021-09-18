@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie list app</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <section>
+        <div class="container">
+            <div class="movie_section">
+                <h1 class="heading">Movie watch list</h1>
+
+                <form action="">
+                    <fieldset>
+                        <input type="text" name="input" id="input" placeholder="Enter your movie name">
+                        <ul class="ul"></ul>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+    <script type="text/babel">
+
+                    let input = document.querySelector(`input[type="text"]`);
+                    let ul = document.querySelector('.ul');
+
+        let allMovies = [
+            {
+                name: "forest gump",
+                watched: false
+            }
+        ];
+
+        input.addEventListener('keyup', (event) => {
+            event.preventDefault()
+            if (event.keyCode === 13) {
+                allMovies.push({
+                    name: event.target.value,
+                    watched: false
+                });
+                // event.target.value = '';
+                createMovieUI(allMovies, ul);
+            }
+        });
+
+        function handleChange(event) {
+            let id = event.target.id;
+
+            allMovies[id].watched = !allMovies[id].watched;
+            createMovieUI(allMovies, ul)
+        }
+
+        // let elm = React.createElement;
+
+        function createMovieUI(data, root) {
+            let ui = data.map((movie, i) => {
+
+                return (
+                    <li key={movie.name} className="flex">
+                        <label htmlFor={i}>{movie.name}</label>
+                        <button id={i} onClick={handleChange}>{movie.watched ? "watched" : "To Watch"}</button>
+                    </li>
+                )
+            })
+            ReactDOM.render(ui, root)
+        }
+
+        createMovieUI(allMovies, ul);
+    </script>
+</body>
+
+</html>
