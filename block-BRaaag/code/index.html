@@ -36,8 +36,8 @@
 
     <script type="text/babel">
 
-        let input = document.querySelector('input');
-        let ul = document.querySelector('ul');
+                    let input = document.querySelector(`input[type="text"]`);
+                    let ul = document.querySelector('.ul');
 
         let allMovies = [
             {
@@ -47,12 +47,13 @@
         ];
 
         input.addEventListener('keyup', (event) => {
+            event.preventDefault()
             if (event.keyCode === 13) {
                 allMovies.push({
                     name: event.target.value,
                     watched: false
                 });
-                event.target.value = '';
+                // event.target.value = '';
                 createMovieUI(allMovies, ul);
             }
         });
@@ -70,9 +71,9 @@
             let ui = data.map((movie, i) => {
 
                 return (
-                    <li>
-                        <label for={i}>{movie.name}</label>
-                        <button id={i} onclick={handleChange}>{movie.watched ? "watched" : "To Watch"}</button>
+                    <li key={movie.name} className="flex">
+                        <label htmlFor={i}>{movie.name}</label>
+                        <button id={i} onClick={handleChange}>{movie.watched ? "watched" : "To Watch"}</button>
                     </li>
                 )
             })
