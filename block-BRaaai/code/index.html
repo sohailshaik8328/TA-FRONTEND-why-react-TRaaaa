@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        let cardInfo = {
+            title: 'City Lights in New York',
+            date: new Date('2017-01-26'),
+            comments: 67,
+            subTitle: 'The city that never sleeps.',
+            description:
+                'New York, the largest city in the U.S., is an architectural marvel with plenty of historic monuments, magnificent buildings and countless dazzling skyscrapers.',
+            category: 'photos',
+            imageURL:
+                'https://images.unsplash.com/photo-1610874933184-7728fd666162?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
+        }
+
+        let div =
+            <section className="section">
+                <div className="div">
+                    <img className="image" src={cardInfo.imageURL} />
+                    <p className="category">{cardInfo.category}</p>
+                    <div></div>
+
+                </div>
+
+                <div className="data">
+                    <h1 className="title">{cardInfo.title}</h1>
+                    <h2 className="sub_title">{cardInfo.subTitle}</h2>
+                    <p className="desc">{cardInfo.description}</p>
+                    <p className="comments">{"comments - " + cardInfo.comments}</p>
+                </div>
+            </section>
+
+        ReactDOM.render(div, document.getElementById('root'))
+    </script>
+
+</body>
+
+</html>
