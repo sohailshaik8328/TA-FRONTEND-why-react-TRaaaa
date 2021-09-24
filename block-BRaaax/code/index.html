@@ -19,21 +19,27 @@
     <script type="text/babel">
         let root = document.getElementById('root');
 
-        function Button() {
+
+    function Button(props) {
+
+        function getStyles() {
+            let { type = "primary", size = "medium" } = props
+            return `button button-${type} button-${size}`
+        }
             return (
-                <>
-                    <button onClick={() => { alert('You Clicked Me!') }}>button</button>
-                </>
+                <button className={getStyles()} disabled={props.disabled} onClick={props.onClickHandler} > {props.label || "Button"}</ button >
+
             )
         }
 
         ReactDOM.render(
             <>
-                <Button disabled={false} />,
-                <Button label="Button" />,
-                <Button />,
-
-
+                <Button label="Click Me!" />
+                <Button label="Click Me!" type="primary" size="small" />
+                <Button label="Click Me!" type="secondary" size="medium" />
+                <Button type="tertiary" size="large" />
+                <Button disabled />
+                <Button onClickHandler={() => { alert('You clicked me!') }} />
             </>, root)
 
     </script>
