@@ -1,4 +1,4 @@
-{
+let colors = {
   "gray": [
     "#f8f9fa",
     "#f1f3f5",
